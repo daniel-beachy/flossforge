@@ -21,7 +21,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # Glob patterns in `node --test` need Node 22. Node 20 reports
+          # "Could not find tests/*.test.js" and the deploy never runs.
+          node-version: 22
       # No dependencies to install -- the engine is plain ES modules and the
       # tests run on the Node test runner.
       - run: npm test
