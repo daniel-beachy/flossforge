@@ -1,0 +1,10 @@
+{
+  "note": "raw = band + knots*0.38 + 4 setup + 2*5 tails; cut = ceil(raw * 1.15). Worked out on paper for each case.",
+  "cases": [
+    { "knots": 0,   "bandInches": 7,  "extraTravel": 0, "raw": 21,     "cut": 25 },
+    { "knots": 100, "bandInches": 7,  "extraTravel": 0, "raw": 59,     "cut": 68 },
+    { "knots": 250, "bandInches": 8,  "extraTravel": 0, "raw": 117,    "cut": 135 },
+    { "knots": 40,  "bandInches": 6,  "extraTravel": 6, "raw": 41.2,   "cut": 48 },
+    { "knots": 1222, "bandInches": 7, "extraTravel": 0, "raw": 485.36, "cut": 559 }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "flossforge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Describe a friendship bracelet in plain English; get a real, tie-able pattern with knot-accurate diagrams, cut lengths and step-by-step instructions.",
+  "scripts": {
+    "test": "node --test \"tests/*.test.js\"",
+    "serve": "node tools/serve.js"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.4.0"
+  }
+}

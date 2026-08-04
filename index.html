@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FlossForge — describe a friendship bracelet, get real instructions</title>
+<meta name="description" content="Describe a friendship bracelet in plain English and get a chart, a materials list, cut lengths and numbered tying instructions. Runs entirely in your browser.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+
+<a class="skip" href="#work">Skip to the app</a>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="./" aria-label="FlossForge home">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M6 4c6 5 6 10 0 15s-6 10 0 13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <path d="M16 4c6 5 6 10 0 15s-6 10 0 13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".62"/>
+        <path d="M26 4c6 5 6 10 0 15s-6 10 0 13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".34"/>
+      </svg>
+      <span>Floss<em>Forge</em></span>
+    </a>
+    <nav class="topnav">
+      <button type="button" class="ghost" data-open="keys">
+        <span class="keydot" id="key-dot" aria-hidden="true"></span> AI key
+      </button>
+      <button type="button" class="ghost" data-open="about">About</button>
+    </nav>
+  </div>
+</header>
+
+<main id="work">
+
+  <!-- ======================================================= ask -->
+  <section class="ask wrap" id="ask">
+    <h1>Describe a bracelet.<br><span>Get real instructions for tying it.</span></h1>
+    <p class="lede">
+      Not a gallery of patterns someone else made — say what you want and it gets designed,
+      checked against the actual knot rules, and written up as numbered steps you can follow on your phone.
+    </p>
+
+    <form id="ask-form" class="card ask-card">
+      <label class="field">
+        <span class="label">What do you want to make?</span>
+        <textarea id="prompt" name="prompt" rows="2" required
+          placeholder="daisy chain with little watermelons between them"
+          autocomplete="off" enterkeyhint="go"></textarea>
+      </label>
+
+      <div class="chips" id="examples" aria-label="Example ideas">
+        <button type="button" class="chip">sunset chevron in warm oranges</button>
+        <button type="button" class="chip">blue bracelet with the word LOVE</button>
+        <button type="button" class="chip">repeating cactus symbols</button>
+        <button type="button" class="chip">Greek wave, black and gold</button>
+        <button type="button" class="chip">daisy chain with tiny watermelons</button>
+        <button type="button" class="chip">something for my dad, dark and simple</button>
+      </div>
+
+      <details class="tune">
+        <summary><span>Size, styles and options</span></summary>
+        <div class="tune-grid">
+          <label class="field">
+            <span class="label">Made for</span>
+            <select id="size" name="size"></select>
+          </label>
+          <label class="field">
+            <span class="label">Fit</span>
+            <select id="fit" name="fit"></select>
+          </label>
+          <label class="field">
+            <span class="label" id="custom-label" hidden>Length in inches</span>
+            <input id="custom" name="custom" type="number" min="3" max="40" step="0.5" value="7" hidden>
+          </label>
+          <label class="field">
+            <span class="label">Seed <small>same seed, same designs</small></span>
+            <div class="seedrow">
+              <input id="seed" name="seed" type="text" autocomplete="off" spellcheck="false">
+              <button type="button" class="ghost sm" id="reseed" title="New seed">↻</button>
+            </div>
+          </label>
+        </div>
+
+        <fieldset class="styles">
+          <legend>Styles to include</legend>
+          <div class="stylegrid" id="stylegrid"></div>
+        </fieldset>
+
+        <label class="field">
+          <span class="label">Reference image <small>optional — read by the AI, if your model supports it</small></span>
+          <div class="filerow">
+            <input id="image" name="image" type="file" accept="image/png,image/jpeg,image/webp">
+            <button type="button" class="ghost sm" id="clear-image" hidden>Remove</button>
+          </div>
+          <div id="image-preview" class="imgprev" hidden></div>
+        </label>
+      </details>
+
+      <div class="go">
+        <button type="submit" class="primary" id="go">
+          <span class="go-label">Design 5 bracelets</span>
+        </button>
+        <p class="gonote" id="gonote"></p>
+      </div>
+    </form>
+  </section>
+
+  <!-- ======================================================= results -->
+  <section class="wrap results" id="results" hidden aria-live="polite">
+    <div class="results-head">
+      <h2 id="results-title">Five ideas</h2>
+      <p id="results-note" class="muted"></p>
+    </div>
+    <div class="cards" id="cards"></div>
+    <div class="notice" id="results-problems" hidden></div>
+  </section>
+
+  <!-- ======================================================= detail -->
+  <section class="detail" id="detail" hidden></section>
+
+</main>
+
+<footer class="wrap foot">
+  <p>
+    FlossForge runs entirely in your browser. Your API key is stored on this device only and is sent
+    straight to the provider you pick — never to us, because there is no us; this is a static page.
+  </p>
+  <p class="muted small">
+    <a href="https://github.com/daniel-beachy/flossforge">Source and honest notes on what is and isn't verified</a>
+  </p>
+</footer>
+
+<!-- ======================================================= key dialog -->
+<dialog id="keys" class="sheet">
+  <form method="dialog" class="sheet-x"><button class="ghost sm" aria-label="Close">✕</button></form>
+  <h2>Bring your own AI key</h2>
+  <p class="muted">
+    FlossForge has no server, so it uses <em>your</em> key and talks to the provider directly from this page.
+    Everything below has a free tier. The key is kept in this browser's local storage and nowhere else.
+  </p>
+
+  <label class="field">
+    <span class="label">Provider</span>
+    <select id="provider"></select>
+  </label>
+
+  <div id="provider-help" class="help"></div>
+
+  <label class="field">
+    <span class="label">API key</span>
+    <div class="seedrow">
+      <input id="apikey" type="password" autocomplete="off" spellcheck="false" placeholder="paste your key">
+      <button type="button" class="ghost sm" id="peek" aria-label="Show key">👁</button>
+    </div>
+  </label>
+
+  <label class="field">
+    <span class="label">Model</span>
+    <div class="seedrow">
+      <select id="model"></select>
+      <button type="button" class="ghost sm" id="refresh-models" title="Fetch the current model list">↻</button>
+    </div>
+  </label>
+
+  <div class="sheet-actions">
+    <button type="button" class="ghost" id="test-key">Test it</button>
+    <button type="button" class="primary" id="save-key">Save</button>
+  </div>
+  <p id="key-status" class="keystatus" role="status"></p>
+
+  <p class="muted small">
+    No key? Everything still works — FlossForge falls back to its own built-in designer, which reads your
+    words for colours, objects and styles. It just can't be imaginative the way a model can.
+  </p>
+</dialog>
+
+<!-- ======================================================= about dialog -->
+<dialog id="about" class="sheet">
+  <form method="dialog" class="sheet-x"><button class="ghost sm" aria-label="Close">✕</button></form>
+  <h2>What this actually does</h2>
+  <p>
+    A language model reads your description and proposes a <em>design</em> — style, colours, motif, layout,
+    repeat. That is the only thing it does. It never chooses a knot.
+  </p>
+  <p>
+    Everything after that is a knot engine written from the craft rules: it checks the design can physically
+    be tied, repairs it when it can't, simulates every knot to draw the preview, and works out the cut lengths
+    with the arithmetic shown so you can check it.
+  </p>
+  <p>
+    Where the engine had to compromise — a colour that couldn't appear where you asked, a shape approximated —
+    it says so on the pattern rather than quietly producing something you can't make.
+  </p>
+  <h3>The knots</h3>
+  <ul class="knotlist" id="knotlist"></ul>
+</dialog>
+
+<script type="module" src="src/ui/app.js"></script>
+</body>
+</html>

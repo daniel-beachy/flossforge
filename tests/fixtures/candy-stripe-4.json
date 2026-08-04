@@ -1,0 +1,23 @@
+{
+  "note": "Four strands, every knot forward, staggered normal-pattern layout. Simulated by hand knot by knot; see fixtures/README.md for the working.",
+  "setup": ["A", "B", "C", "D"],
+  "rows": [
+    { "row": 1, "positions": [0, 2], "knots": ["F", "F"], "shown": ["A", "C"], "stateAfter": ["B", "A", "D", "C"] },
+    { "row": 2, "positions": [1],    "knots": ["F"],      "shown": ["A"],      "stateAfter": ["B", "D", "A", "C"] },
+    { "row": 3, "positions": [0, 2], "knots": ["F", "F"], "shown": ["B", "A"], "stateAfter": ["D", "B", "C", "A"] },
+    { "row": 4, "positions": [1],    "knots": ["F"],      "shown": ["B"],      "stateAfter": ["D", "C", "B", "A"] },
+    { "row": 5, "positions": [0, 2], "knots": ["F", "F"], "shown": ["D", "B"], "stateAfter": ["C", "D", "A", "B"] },
+    { "row": 6, "positions": [1],    "knots": ["F"],      "shown": ["D"],      "stateAfter": ["C", "A", "D", "B"] },
+    { "row": 7, "positions": [0, 2], "knots": ["F", "F"], "shown": ["C", "D"], "stateAfter": ["A", "C", "B", "D"] },
+    { "row": 8, "positions": [1],    "knots": ["F"],      "shown": ["C"],      "stateAfter": ["A", "B", "C", "D"] }
+  ],
+  "repeatRows": 8,
+  "closes": true,
+  "diagonals": {
+    "note": "[row, strandPosition] -- each colour steps one strand position right per row, which is what makes a candy stripe a diagonal.",
+    "A": [[1, 0], [2, 1], [3, 2]],
+    "B": [[3, 0], [4, 1], [5, 2]],
+    "D": [[5, 0], [6, 1], [7, 2]],
+    "C": [[7, 0], [8, 1], [1, 2]]
+  }
+}

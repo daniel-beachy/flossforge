@@ -1,0 +1,20 @@
+{
+  "note": "Hand-derived from the physical action of the half-hitches. left/right are the two strands hanging at the knot before it is tied.",
+  "cases": [
+    { "knot": "F",  "symbol": "/",  "left": "A", "right": "B", "shown": "A", "after": ["B", "A"] },
+    { "knot": "B",  "symbol": "\\", "left": "A", "right": "B", "shown": "B", "after": ["B", "A"] },
+    { "knot": "FB", "symbol": ">",  "left": "A", "right": "B", "shown": "A", "after": ["A", "B"] },
+    { "knot": "BF", "symbol": "<",  "left": "A", "right": "B", "shown": "B", "after": ["A", "B"] },
+
+    { "knot": "F",  "symbol": "/",  "left": "X", "right": "X", "shown": "X", "after": ["X", "X"] },
+    { "knot": "B",  "symbol": "\\", "left": "P", "right": "Q", "shown": "Q", "after": ["Q", "P"] },
+    { "knot": "FB", "symbol": ">",  "left": "P", "right": "Q", "shown": "P", "after": ["P", "Q"] },
+    { "knot": "BF", "symbol": "<",  "left": "P", "right": "Q", "shown": "Q", "after": ["P", "Q"] }
+  ],
+  "sources": {
+    "F":  { "source": "L", "swaps": true },
+    "B":  { "source": "R", "swaps": true },
+    "FB": { "source": "L", "swaps": false },
+    "BF": { "source": "R", "swaps": false }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "note": "Three base strands, one weft. Weft is the background colour. Knot letters are listed in the order they are TIED, so row 2 starts at the right-hand edge.",
+  "width": 3,
+  "background": "BG",
+  "baseStrands": ["D", "D", "D"],
+  "rows": [
+    {
+      "row": 1,
+      "direction": "ltr",
+      "wantsLeftToRight": ["D", "BG", "BG"],
+      "knotsInTyingOrder": ["B", "F", "F"],
+      "why": "weft is the left strand of each pair going right, so B shows the base (design) and F shows the weft (background)"
+    },
+    {
+      "row": 2,
+      "direction": "rtl",
+      "wantsLeftToRight": ["D", "D", "BG"],
+      "knotsInTyingOrder": ["B", "F", "F"],
+      "why": "coming back the weft is the right strand, so B shows the weft (background) and F shows the base (design); tied right to left the wants are BG, D, D"
+    },
+    {
+      "row": 3,
+      "direction": "ltr",
+      "wantsLeftToRight": ["BG", "D", "BG"],
+      "knotsInTyingOrder": ["F", "B", "F"]
+    }
+  ],
+  "stringCount": 4,
+  "stringCountNote": "width + one weft colour"
+}
