@@ -113,7 +113,9 @@ Tests (Node 18+, no dependencies):
 npm test
 ```
 
-74 tests across five files. Every fixture in `tests/fixtures/` was **derived by hand**, not copied from a generator — see `tests/fixtures/README.md` for how each one was worked out. The most important is `candy-stripe-4.json`: a four-strand candy stripe simulated on paper for eight rows, recording the strand order after every single knot, and the engine reproduces it exactly including the closure back to the starting order.
+90 tests across six files. Every fixture in `tests/fixtures/` was **derived by hand**, not copied from a generator — see `tests/fixtures/README.md` for how each one was worked out. The most important is `candy-stripe-4.json`: a four-strand candy stripe simulated on paper for eight rows, recording the strand order after every single knot, and the engine reproduces it exactly including the closure back to the starting order.
+
+The LLM path is tested too, with the network stubbed (`tests/llm.test.js`): a fenced-JSON reply wrapped in chatter, a style name that's close but not exact, colours given as words instead of DMC codes, a design that can't be tied, a 429, and a model that replies with prose instead of JSON. All of them have to end with five finished patterns.
 
 There's also a guard test that scans every `.js` file under `src/` for anything that looks like a DMC code and fails if it isn't in the stocked palette. It has caught eleven real bugs.
 
@@ -159,6 +161,8 @@ Chevron, hearts, XO, lightning, diagonal, triangles, dots and stripes reproduce 
 
 **The chevron fixture is property-based.** It asserts mirror symmetry, correct knot types at the turn, and closure — rather than a literal row-by-row chart. A literal chart would have been *copied* from somewhere, which proves nothing. The candy stripe and alpha fixtures *are* literal, because those I could derive from first principles myself.
 
+**I never ran it against a real API key.** Every provider was checked for CORS from a browser, and the whole LLM path is tested with the network stubbed — but the actual quality of the designs a given model returns, and whether the free-tier limits hold up in practice, I could not verify without keys for all four.
+
 **Float-carry length.** When a colour has to travel behind the work, there's a practical maximum before it snags. I found no primary source for it, so the engine uses a conservative limit.
 
 ---
@@ -184,7 +188,7 @@ src/llm/
   prompt.js           the prompt, generated from engine data
   generate.js         retry, dedupe, offline top-up
 src/ui/               app.js, views.js
-tests/                74 tests + hand-derived fixtures
+tests/                90 tests + hand-derived fixtures
 tools/                static server, screenshot verification loop
 ```
 
