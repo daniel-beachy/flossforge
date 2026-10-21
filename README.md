@@ -4,6 +4,10 @@
 
 Live: **https://daniel-beachy.github.io/flossforge/**
 
+> **Status note from Daniel:** this version was built with Claude Opus 5 via GitHub Copilot CLI, and
+> I'm not very satisfied with how it turned out. I plan to redo it from scratch with Claude Opus 5.5
+> eventually. Treat this repo as a first attempt, not the finished idea.
+
 Type something like *"daisy chain with little watermelons between them"*, *"sunset chevron in warm oranges"*, or *"blue bracelet with the word LOVE written across"*. FlossForge gives you five distinct designs, a rendered preview of each, a materials list, per-colour cut lengths **with the arithmetic shown**, and numbered step-by-step tying instructions with a phone-friendly follow-along mode.
 
 Everything is static. No server, no build step, no dependencies. It runs on GitHub Pages and it runs from a `file://` URL if you want.
